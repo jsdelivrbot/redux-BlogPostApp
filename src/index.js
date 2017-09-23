@@ -15,7 +15,7 @@ import PostNew from './components/post_new';
 // react-router
 // BrowserRouter - interacts with History library, decides what to do based off the changed url
 // Route - Provides main configuration - will render components based of URL
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
@@ -27,10 +27,14 @@ const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter> 
-
       <div>
-        <Route path="/" component={PostIndex} />
+      <Switch>
+      
+        <Route exact path="/" component={PostIndex} />
         <Route path="/posts/new" component={PostNew} />
+        <Route component={() => <div>Not found</div>} />
+
+      </Switch>
       </div>
 
     </BrowserRouter>
