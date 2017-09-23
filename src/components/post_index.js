@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 //Actions
 import { fetchPosts } from './../actions'; 
@@ -19,16 +20,40 @@ class PostIndex extends React.Component{
 
 
     }
+
+    renderPosts(){
+        //Note we are now looking at an object that contains a list of posts not an ARRAY
+        return _.map(this.props.posts, post => {
+            return (
+                <li className="list-group-item" key={post.id}>
+                    {post.title}
+                </li>
+            )
+        })  // this will return an array
+    }
+
     render(){
+        //console.log(`STATE POSTS: `, this.props.posts);
+
+
         return(
             <div>
-            Hello World!
+                <h3>Posts</h3>
+                <ul className="list-group">
+                    {this.renderPosts()}
+                </ul>
             </div>       
         )
 
     }
 }
 
+function mapStateToProps(state){
+    return {
+        posts: state.posts
+    }
+}
+
 
 //Passing action through Arguments
-export default connect(null, {fetchPosts : fetchPosts})(PostIndex);
+export default connect(mapStateToProps, {fetchPosts : fetchPosts})(PostIndex);
