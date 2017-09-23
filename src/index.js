@@ -9,6 +9,7 @@ import reducers from './reducers';
 
 //Components 
 import PostIndex from './components/post_index';
+import PostNew from './components/post_new';
 
 
 // react-router
@@ -29,6 +30,7 @@ ReactDOM.render(
 
       <div>
         <Route path="/" component={PostIndex} />
+        <Route path="/posts/new" component={PostNew} />
       </div>
 
     </BrowserRouter>
