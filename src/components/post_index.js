@@ -3,7 +3,12 @@ import React from 'react';
 
 class PostIndex extends React.Component{
     render(){
-        return( <div>Posts Index</div>) 
+        return(
+            <div>
+            Hello World!
+            </div>       
+        )
+
     }
 }
 
