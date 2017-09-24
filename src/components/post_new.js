@@ -32,15 +32,26 @@ class PostsNew extends Component {
 
     }
 
+    onSubmit(values){
+        console.log(values);
+    }
 
 
     
     render() {
+
+        // this.props - this is a property being passed down to the component from reduxFroms( similar to connect)
+        const { handleSubmit } = this.props;
+
+
         // name = will be the name of the state of the field
         // component = takes in a function or another component 
         // that will be used to display the field component
         return (
-            <form>
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))
+                // We are in charge of Submittal
+                // we will need to implement the data to the back ourselves
+            }>
                 <Field 
                 label="Title"
                 name="title" 
@@ -56,6 +67,7 @@ class PostsNew extends Component {
                 name="content" 
                 component={this.renderField}
                 />
+                <button type="submit" className="btn btn-primary"> Submit </button>
             </form>
         )
     }
