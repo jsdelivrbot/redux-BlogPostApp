@@ -25,6 +25,8 @@ class PostsNew extends Component {
                     // object contains, onChange, onFocus, onBlur={field.input.onBlur}
                     {...field.input}
                 />
+                
+                {field.meta.error}
             </div>
         );
 
