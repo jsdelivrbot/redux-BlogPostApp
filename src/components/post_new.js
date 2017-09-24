@@ -9,24 +9,50 @@ import { Field, reduxForm } from 'redux-form';
 
 
 class PostsNew extends Component {
-    renderTitleField(field){
+    // renderTitleField(field){
+    //     //argument being called must be field
+    //     //field argument has event handlers
+    //     //that allow us to render through field
+
+    //     return(
+    //         <div className="form-group">
+    //             <label>Title</label>
+
+    //             <input 
+    //                 className="form-control"
+    //                 type="text"
+    //                 // object contains, onChange, onFocus, onBlur={field.input.onBlur}
+    //                 {...field.input}
+    //             />
+    //         </div>
+    //     );
+
+    // }
+
+
+     renderField(field){
         //argument being called must be field
         //field argument has event handlers
         //that allow us to render through field
 
         return(
-            <div>
-                <input
+            <div className="form-group">
+                <label>{field.label}</label>
+
+                <input 
+                    className="form-control"
                     type="text"
                     // object contains, onChange, onFocus, onBlur={field.input.onBlur}
                     {...field.input}
-                    
                 />
             </div>
         );
 
     }
 
+
+
+    
     render() {
         // name = will be the name of the state of the field
         // component = takes in a function or another component 
@@ -34,8 +60,19 @@ class PostsNew extends Component {
         return (
             <form>
                 <Field 
+                label="Title"
                 name="title" 
-                component={this.renderTitleField}
+                component={this.renderField}
+                />
+                <Field 
+                label="Tags"
+                name="tags" 
+                component={this.renderField}
+                />
+                <Field 
+                label="Post Content"
+                name="content" 
+                component={this.renderField}
                 />
             </form>
         )
