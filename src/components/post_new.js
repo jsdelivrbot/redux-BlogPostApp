@@ -15,8 +15,14 @@ class PostsNew extends Component {
         //field argument has event handlers
         //that allow us to render through field
 
+        // destructuring can pull nested values
+        const { meta: { touched, error } } = field;
+
+        // ternary logic to implement className based of touched user input & error 
+        // #has-danger will make border red
+        const className = `form-group ${meta.touched && meta.error ? 'has-danger' : ''}`
         return(
-            <div className="form-group">
+            <div className={className}>
                 <label>{field.label}</label>
 
                 <input 
@@ -26,7 +32,9 @@ class PostsNew extends Component {
                     {...field.input}
                 />
                 
-                {field.meta.touched ? field.meta.error : ''}
+                <div className="text-help">
+                <em>{field.meta.touched ? field.meta.error : ''}</em>
+                </div>
             </div>
         );
 
