@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 // reduxForm uses the same logic as connect from - react-redux
 // Field - this is the component we need to make for each piece of state 
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 
 
 
@@ -16,7 +17,9 @@ class PostsNew extends Component {
         //that allow us to render through field
 
         // destructuring can pull nested values
-        const { meta: { touched, error } } = field;
+        // const { meta:  { touched, error } } = field;
+        const { meta } = field;
+        
 
         // ternary logic to implement className based of touched user input & error 
         // #has-danger will make border red
@@ -76,6 +79,7 @@ class PostsNew extends Component {
                 component={this.renderField}
                 />
                 <button type="submit" className="btn btn-primary"> Submit </button>
+                <Link to="/" className="btn btn-danger"> Cancel </Link>
             </form>
         )
     }
