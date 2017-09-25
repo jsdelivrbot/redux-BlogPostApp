@@ -48,8 +48,15 @@ class PostsNew extends Component {
     onSubmit(values){
         //console.log(values);
 
+        
+        
         // pass object to actions which saves to api
-        this.props.createPost(values);
+        this.props.createPost(values, () => {
+            // this is a callback being passed to createPost to validate success
+
+            //react-router prop, that will push users to route automatically
+            this.props.history.push('/');
+        });
     }
 
 

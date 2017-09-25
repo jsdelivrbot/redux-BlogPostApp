@@ -21,11 +21,17 @@ export function fetchPosts() {
 
 
 // receives the values object { title, categories, content} 
-export function createPost(values) {
+export function createPost(values, callback) {
 
     // deliver object with second argument - api will unpack & save to DB
-    const request = axios.post(`${ROOT_URL}/posts${API_KEY}`, values)
+    const request = axios.post(`${ROOT_URL}/posts${API_KEY}`, values).then(() => {
+        //we are using a promise & on a success case of .post, this promise will run the callback
+        //the callback contains .history.push('/') & this will push the user to the posts page on success
 
+        callback()
+    });
+
+    
     return {
         type: CREATE_POST,
         payload: request
