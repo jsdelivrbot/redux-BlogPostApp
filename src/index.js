@@ -10,6 +10,7 @@ import reducers from './reducers';
 //Components 
 import PostIndex from './components/post_index';
 import PostNew from './components/post_new';
+import PostShow from './components/post_show';
 
 
 // react-router
@@ -31,7 +32,8 @@ ReactDOM.render(
       <Switch>
       
         <Route exact path="/" component={PostIndex} />
-        <Route path="/posts/new" component={PostNew} />
+        <Route exact path="/posts/new" component={PostNew} />
+        <Route path="/posts/:id" component={PostShow} />
         <Route component={() => <div>Not found</div>} />
 
       </Switch>
