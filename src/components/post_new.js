@@ -6,6 +6,8 @@ import React, { Component } from 'react';
 // Field - this is the component we need to make for each piece of state 
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createPost } from './../actions';
 
 
 
@@ -44,7 +46,10 @@ class PostsNew extends Component {
     }
 
     onSubmit(values){
-        console.log(values);
+        //console.log(values);
+
+        // pass object to actions which saves to api
+        this.props.createPost(values);
     }
 
 
@@ -120,7 +125,11 @@ function validate(values) {
 // form option will be the form for this form
 // make sure that the string is Uniqe - each form must be called something new
 // this is because if the form is the same, then both forms will merge ---
+
 export default reduxForm({
     validate,
     form: 'PostsNewForm'
-})(PostsNew);
+})(
+    // react-redux connect gets applied like this 
+    connect(null, {createPost: createPost})(PostsNew)
+);

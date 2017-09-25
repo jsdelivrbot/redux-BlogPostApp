@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 
 // import action type variable 
-import { FETCH_POSTS } from '../actions';
+import { FETCH_POSTS, CREATE_POST } from '../actions';
 
 
 // default state is object - 
