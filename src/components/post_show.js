@@ -19,12 +19,22 @@ class PostsShow extends Component{
     }
 
     render(){
+        const { post } = this.props
+
+        // return a catch if statement to prevent undefined prop from loading
+        // this is due to the fact that, API call will be slower then react loading
+        if(!post){
+            return <div>Loading....</div>;
+        }
+
         return(
             
             <div>
-            PostsShow
+            <h3>{post.title}</h3>
+            <h6>Categories: {post.categories}</h6>
+            <p>{post.content}</p>
             </div>
-        )
+        );
     }
 }
 
