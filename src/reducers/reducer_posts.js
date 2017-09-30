@@ -4,13 +4,18 @@ import _ from 'lodash';
 
 
 // import action type variable 
-import { FETCH_POSTS, FETCH_POST } from '../actions';
+import { FETCH_POSTS, FETCH_POST, DELETE_POST } from '../actions';
 
 
 // default state is object - 
 // as our objective is to convert the request arr[ {object}, {} ] to { {}, {} } 
 export default function( state = {}, action ) {
     switch(action.type){
+        case DELETE_POST:
+            // look at state object, if state object has key of action.payload(post id)
+            // drop that piece of the state from object.
+            return _.omit(state, action.payload)
+
         case FETCH_POST:
         // remember this tutorial took the approach of keeping state in object
 
