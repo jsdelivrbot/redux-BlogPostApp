@@ -19,6 +19,7 @@ class PostIndex extends React.Component{
         // before we make the API request this is due to the fact that API requests 
         // can take a few secs & we do not want the component loading
 
+        
         this.props.fetchPosts();
 
 
@@ -29,7 +30,9 @@ class PostIndex extends React.Component{
         return _.map(this.props.posts, post => {
             return (
                 <li className="list-group-item" key={post.id}>
+                    <Link to={`/posts/${post.id}`}>
                     {post.title}
+                    </Link>
                 </li>
             )
         })  // this will return an array

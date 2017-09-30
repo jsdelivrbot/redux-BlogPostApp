@@ -8,6 +8,7 @@ const API_KEY = '?key=james';
 export const FETCH_POSTS = 'fetch_posts';
 export const FETCH_POST = 'fetch_post';
 export const CREATE_POST = 'create_post';
+export const DELETE_POST = 'delete_post';
 
 
 export function fetchPosts() {
@@ -47,5 +48,18 @@ export function fetchPost(id){
     return {
         type: FETCH_POST,
         payload: request
+    };
+}
+
+
+// delete posts
+export function deletePost(id, callBack){
+    
+    const request = axios.delete(`${ROOT_URL}/posts/${id}${API_KEY}`)
+    .then(() => callBack())
+
+    return {
+        type: DELETE_POST,
+        payload: id
     };
 }

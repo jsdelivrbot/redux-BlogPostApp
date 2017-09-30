@@ -2,8 +2,9 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import { fetchPost } from './../actions'; 
+import { fetchPost, deletePost } from './../actions'; 
 
 
 class PostsShow extends Component{
@@ -14,8 +15,19 @@ class PostsShow extends Component{
         //this is a prop from react router that allows us access to the params.id variable
         //the params will give access to any wild card property within the url
         //const id = this.props.match.params.id;
+
+        // caching data 
+        if(!this.props.post){
+            const { id } = this.props.match.params
+            this.props.fetchPost(id);
+        }
+    }
+
+    onDeleteClick() {
         const { id } = this.props.match.params
-        this.props.fetchPost(id);
+        this.props.deletePost(id, () => {
+            this.props.history.push('/');
+        })
     }
 
     render(){
@@ -30,6 +42,13 @@ class PostsShow extends Component{
         return(
             
             <div>
+            <Link to="/">Back To Index</Link>
+            <button
+                className="btn btn-danger pull-xs-right"
+                onClick={this.onDeleteClick.bind(this)}
+            >
+                Delete Post
+            </button>
             <h3>{post.title}</h3>
             <h6>Categories: {post.categories}</h6>
             <p>{post.content}</p>
@@ -61,4 +80,4 @@ function mapStateToProps({posts}, ownProps) {
 
 
 // second argument is mapDispatchToProps
-export default connect(mapStateToProps, { fetchPost: fetchPost })(PostsShow);
+export default connect(mapStateToProps, { fetchPost: fetchPost, deletePost : deletePost })(PostsShow);
